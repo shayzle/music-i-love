@@ -17,19 +17,19 @@ Features a fan-style album carousel with smooth animations, swipe and scroll sup
 
 - Drag, scroll, or use arrow keys to navigate albums
 - Click the center album to open it on Spotify
-- Fully responsive — works on mobile and desktop
+- Fully responsive, works on mobile and desktop
 
 ---
 
 ## Albums Featured
 
-- Tyler, The Creator — Don't Tap The Glass (2025)
-- Radiohead — OK Computer (1997)
-- Tom Misch — Geography (2018)
-- John Mayer — Continuum (2006)
-- Snoh Aalegra — Feels (2017)
-- Starmania — Remastered in 2009 (2009)
-- The Rolling Stones — Exile on Main Street (1972)
+- Tyler, The Creator : Don't Tap The Glass (2025)
+- Radiohead : OK Computer (1997)
+- Tom Misch : Geography (2018)
+- John Mayer : Continuum (2006)
+- Snoh Aalegra : Feels (2017)
+- Starmania : Remastered in 2009 (2009)
+- The Rolling Stones : Exile on Main Street (1972)
 
 ---
 
@@ -52,4 +52,4 @@ Features a fan-style album carousel with smooth animations, swipe and scroll sup
 
 ## License
 
-MIT
+This project is licensed under the [MIT License](./LICENSE).
