@@ -4,7 +4,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <script>
-    // Silence the benign ResizeObserver loop notice (browser quirk; not an error)
     (function () {
       const RO_MSG = 'ResizeObserver loop';
       window.addEventListener('error', (e) => {
@@ -47,47 +46,12 @@
     a { color: inherit; }
     button { font-family: inherit; }
 
-    /* ───── Page shell ───── */
     .page {
       min-height: 100vh;
       padding: clamp(16px, 2.4vw, 36px) var(--gutter-x);
       padding-bottom: clamp(40px, 8vw, 80px);
     }
 
-    /* ───── Top nav ───── */
-    .nav {
-      display: flex; align-items: center;
-      gap: clamp(18px, 3vw, 36px);
-      margin-bottom: clamp(28px, 5vw, 64px);
-      font-size: clamp(13px, 1.4vw, 16px);
-    }
-    .nav-link {
-      color: #fff; text-decoration: none;
-      letter-spacing: 0.02em; cursor: pointer;
-    }
-    .nav-brand {
-      margin-left: auto;
-      color: var(--cyan);
-      letter-spacing: 0.06em;
-      font-size: clamp(13px, 1.4vw, 16px);
-    }
-    .nav-avatar {
-      margin-left: auto;
-      width: clamp(36px, 4vw, 48px);
-      height: clamp(36px, 4vw, 48px);
-      border-radius: 50%;
-      background: linear-gradient(135deg, #3a2a2a, #1a0f12);
-      border: 1px solid rgba(255,255,255,0.18);
-      flex-shrink: 0;
-    }
-    @media (max-width: 760px) {
-      .nav-avatar { margin-left: auto; }
-    }
-    @media (min-width: 761px) {
-      .nav-brand + .nav-avatar { margin-left: 16px; }
-    }
-
-    /* ───── Section title ───── */
     .section-title {
       margin: 0 0 clamp(36px, 6vw, 72px);
       font-family: 'Fraunces', Georgia, serif;
@@ -100,7 +64,6 @@
       text-wrap: balance;
     }
 
-    /* ───── Main grid ───── */
     .main-grid {
       display: grid;
       grid-template-columns: minmax(260px, 1fr) minmax(0, 2fr);
@@ -108,13 +71,9 @@
       align-items: center;
     }
     @media (max-width: 860px) {
-      .main-grid {
-        grid-template-columns: 1fr;
-        gap: clamp(24px, 5vw, 40px);
-      }
+      .main-grid { grid-template-columns: 1fr; gap: clamp(24px, 5vw, 40px); }
     }
 
-    /* ───── Text column ───── */
     .eyebrow {
       font-size: clamp(11px, 1.1vw, 13px);
       letter-spacing: 0.24em;
@@ -130,11 +89,8 @@
       max-width: 380px;
       text-wrap: pretty;
     }
-    @media (max-width: 860px) {
-      .body-copy { max-width: 100%; }
-    }
+    @media (max-width: 860px) { .body-copy { max-width: 100%; } }
 
-    /* ───── Fan column ───── */
     .fan-col { width: 100%; }
 
     .caption {
@@ -161,14 +117,10 @@
       cursor: pointer;
       transition: width 240ms, background 240ms;
     }
-    .dot.is-active {
-      width: 22px;
-      background: var(--blue);
-    }
+    .dot.is-active { width: 22px; background: var(--blue); }
 
-    /* ───── Footer hint ───── */
     .hint {
-      margin-top: clamp(32px, 5vw, 48px);
+      margin-top: clamp(20px, 3vw, 28px);
       font-size: clamp(10px, 1vw, 11px);
       letter-spacing: 0.22em;
       color: var(--fg-faint);
@@ -176,149 +128,17 @@
       text-align: center;
     }
 
-    /* ───── Save row + button + toast ───── */
-    .save-row {
-      margin-top: clamp(24px, 3vw, 36px);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-    .save-btn {
-      font-family: 'Space Mono', monospace;
-      font-size: clamp(12px, 1.2vw, 14px);
-      letter-spacing: 0.04em;
-      padding: 12px 22px;
-      background: transparent;
-      color: rgba(255,255,255,0.32);
-      border: 1px solid rgba(255,255,255,0.16);
-      border-radius: 999px;
-      cursor: not-allowed;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      transition: background 240ms, color 240ms, border-color 240ms, transform 200ms;
-    }
-    .save-btn.is-ready {
-      color: #fff;
-      border-color: var(--blue);
-      background: rgba(43, 48, 255, 0.12);
-      cursor: pointer;
-    }
-    .save-btn.is-ready:hover {
-      background: var(--blue);
-      transform: translateY(-1px);
-    }
-    .save-btn.is-ready:active {
-      transform: translateY(0);
-    }
-    .save-count {
-      margin-left: 8px;
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.16);
-      font-size: 11px;
-      min-width: 22px;
-      text-align: center;
-    }
-    .save-toast {
-      font-size: 12px;
-      letter-spacing: 0.04em;
-      color: var(--blue);
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: rgba(43, 48, 255, 0.14);
-      animation: toast-in 220ms ease-out;
-    }
-    @keyframes toast-in {
-      from { opacity: 0; transform: translateY(4px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ───── Inline editable fields ───── */
-    .editable {
-      outline: none;
-      border-radius: 4px;
-      padding: 1px 4px;
-      margin: 0 -4px;
-      cursor: text;
-      transition: background 180ms, box-shadow 180ms;
-      position: relative;
-    }
-    .editable:hover {
-      background: rgba(43, 48, 255, 0.10);
-    }
-    .editable:focus,
-    .editable.is-editing {
-      background: rgba(43, 48, 255, 0.18);
-      box-shadow: 0 0 0 1px var(--blue);
-    }
-    .editable:empty::before {
-      content: attr(data-placeholder);
-      color: var(--fg-faint);
-      font-style: italic;
-    }
-
-    /* Slight pencil hint on hover so the caption reads as editable */
-    .caption .editable {
-      position: relative;
-    }
-    .caption .editable:hover::after {
-      content: "✎";
-      position: absolute;
-      top: -14px;
-      right: -2px;
-      font-size: 10px;
-      color: var(--blue);
-      opacity: 0.7;
-      pointer-events: none;
-    }
-
-    .edit-hint {
-      margin: 14px 0 0;
-      font-size: clamp(10px, 1vw, 11px);
-      letter-spacing: 0.04em;
-      color: var(--fg-faint);
-      max-width: 380px;
-      font-style: italic;
-    }
-
-    .reset-btn {
-      font-family: 'Space Mono', monospace;
-      font-size: 12px;
-      letter-spacing: 0.04em;
-      padding: 8px 14px;
-      background: transparent;
-      color: var(--fg-faint);
-      border: 1px dashed rgba(255,255,255,0.18);
-      border-radius: 999px;
-      cursor: pointer;
-      transition: color 200ms, border-color 200ms;
-    }
-    .reset-btn:hover {
-      color: #fff;
-      border-color: rgba(255,255,255,0.4);
-    }
-
-    /* ───── Small screen tweaks ───── */
     @media (max-width: 480px) {
       .nav { gap: 14px; }
-      .nav-link { font-size: 13px; }
     }
   </style>
-  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
 </head>
-<body style="font-family: Georgia">
+<body>
   <div id="root"></div>
   <script type="text/babel" data-presets="react">
-
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Music I Love — section components (inlined to avoid Babel cross-origin fetch)
-// ─────────────────────────────────────────────────────────────────────────────
 
 const ALBUMS = [
   {
@@ -326,57 +146,55 @@ const ALBUMS = [
     title: "Don't Tap The Glass",
     year: 2025,
     spotify: 'https://open.spotify.com/album/1jzv3jwZbt8lYfEtMjiD1R',
-    cover: 'https://coverartarchive.org/release/a1b2c3d4/front',
+    cover: 'tyler.jpg',
   },
   {
     artist: 'Radiohead',
     title: 'OK Computer',
     year: 1997,
     spotify: 'https://open.spotify.com/album/2fGCAYUMssLKiUAoNdxGLx',
-    cover: { bg: '#dde2e1', fg: '#0a0a0a', style: 'glitch' },
+    cover: 'radiohead.jpg',
   },
   {
     artist: 'Tom Misch',
     title: 'Geography',
     year: 2018,
     spotify: 'https://open.spotify.com/album/0hDnsNkxpMDZrpBlGjldtW',
-    cover: { bg: '#67c9b4', fg: '#0a0a0a', style: 'wave' },
+    cover: 'tommisch.jpg',
   },
   {
     artist: 'John Mayer',
     title: 'Continuum',
     year: 2006,
-    spotify: 'https://open.spotify.com/search/John%20Mayer%20Continuum',
-    cover: { bg: '#1a3a5c', fg: '#f0e6d2', style: 'serif' },
+    spotify: 'https://open.spotify.com/album/3KoAHFe3nCOBEBkw9Xe4QJ',
+    cover: 'johnmayer.jpg',
   },
   {
     artist: 'Snoh Aalegra',
     title: 'Feels',
     year: 2017,
-    spotify: 'https://open.spotify.com/search/Snoh%20Aalegra%20Feels',
-    cover: { bg: '#e6a8b8', fg: '#3a1a25', style: 'soft' },
+    spotify: 'https://open.spotify.com/album/2x2WRgIVKQNNMmBBCHqsEL',
+    cover: 'snoh.jpg',
   },
   {
     artist: 'Starmania',
     title: 'Remastered in 2009',
     year: 2009,
-    spotify: 'https://open.spotify.com/search/Starmania%20Remastered%202009',
-    cover: { bg: '#0a0a0a', fg: '#ff2d3a', style: 'theatre' },
+    spotify: 'https://open.spotify.com/search/Starmania%20remastered%202009',
+    cover: 'starmania.jpg',
   },
   {
     artist: 'The Rolling Stones',
     title: 'Exile on Main Street',
     year: 1972,
-    spotify: 'https://open.spotify.com/search/Rolling%20Stones%20Exile%20on%20Main%20Street',
-    cover: { bg: '#c4a06a', fg: '#0a0a0a', style: 'collage' },
+    spotify: 'https://open.spotify.com/album/1xpGNTOmJiNIetJRx0f1Mt',
+    cover: 'rollingstones.jpg',
   },
 ];
 
-
-// ── Responsive helper ──────────────────────────────────────────────────────
 function useMediaQuery(query) {
   const [matches, setMatches] = React.useState(() =>
-  typeof window !== 'undefined' && window.matchMedia ? window.matchMedia(query).matches : false
+    typeof window !== 'undefined' && window.matchMedia ? window.matchMedia(query).matches : false
   );
   React.useEffect(() => {
     const m = window.matchMedia(query);
@@ -390,87 +208,60 @@ function useMediaQuery(query) {
   return matches;
 }
 
-// ── AlbumSlot — drop-in image target with localStorage persistence ─────────
-function AlbumSlot({ id, label }) {
-  const [src, setSrc] = React.useState(() => {
-    try {return localStorage.getItem('album-cover:' + id) || '';} catch {return '';}
-  });
-  const inputRef = React.useRef(null);
-
-  const handleFile = (file) => {
-    if (!file || !file.type.startsWith('image/')) return;
-    const reader = new FileReader();
-    reader.onload = () => {
-      const dataUrl = String(reader.result);
-      setSrc(dataUrl);
-      try {localStorage.setItem('album-cover:' + id, dataUrl);} catch {}
-      try { window.dispatchEvent(new Event('album-cover-saved')); } catch {}
-    };
-    reader.readAsDataURL(file);
-  };
-
-  const onDrop = (e) => {
-    e.preventDefault();e.stopPropagation();
-    e.currentTarget.style.outline = '';
-    const file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
-    if (file) handleFile(file);
-  };
-  const onDragOver = (e) => {
-    e.preventDefault();e.stopPropagation();
-    e.currentTarget.style.outline = '2px solid #2b30ff';
-    e.currentTarget.style.outlineOffset = '-2px';
-  };
-  const onDragLeave = (e) => {
-    e.currentTarget.style.outline = '';
-  };
-
+function AlbumCover({ album, isActive }) {
   return (
-    <div
-      onClick={(e) => {e.stopPropagation();inputRef.current && inputRef.current.click();}}
-      onDrop={onDrop}
-      onDragOver={onDragOver}
-      onDragLeave={onDragLeave}
+    <a
+      href={isActive ? album.spotify : undefined}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={(e) => { if (!isActive) e.preventDefault(); }}
       style={{
-        width: '100%', height: '100%',
-        background: '#0d0d0d',
-        backgroundImage: src ? `url(${src})` : 'none',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        display: 'block',
+        width: '100%',
+        height: '100%',
         position: 'relative',
         overflow: 'hidden',
-        cursor: 'pointer',
-        display: 'flex', alignItems: 'center', justifyContent: 'center'
-      }}>
-      
-      {!src &&
-      <div style={{
-        padding: '0 14px',
-        textAlign: 'center',
-        color: 'rgba(255,255,255,0.55)',
-        fontSize: 11,
-        letterSpacing: '0.12em',
-        textTransform: 'uppercase',
-        lineHeight: 1.5,
-        whiteSpace: 'pre-line',
-        pointerEvents: 'none'
-      }}>
-          <div style={{ fontSize: 22, marginBottom: 10, opacity: 0.55 }}>+</div>
-          {label}
-          <div style={{ marginTop: 12, fontSize: 9, opacity: 0.5 }}>drop image</div>
+        cursor: isActive ? 'pointer' : 'default',
+      }}
+    >
+      <img
+        src={album.cover}
+        alt={`${album.artist} — ${album.title}`}
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          display: 'block',
+          pointerEvents: 'none',
+        }}
+        onError={(e) => {
+          e.target.style.display = 'none';
+          e.target.parentNode.style.background = '#1a1a1a';
+        }}
+      />
+      {isActive && (
+        <div style={{
+          position: 'absolute',
+          bottom: 10,
+          right: 10,
+          background: 'rgba(0,0,0,0.6)',
+          backdropFilter: 'blur(6px)',
+          borderRadius: '50%',
+          width: 32,
+          height: 32,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#1DB954">
+            <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+          </svg>
         </div>
-      }
-      <input
-        ref={inputRef}
-        type="file"
-        accept="image/*"
-        style={{ display: 'none' }}
-        onChange={(e) => handleFile(e.target.files && e.target.files[0])} />
-      
-    </div>);
-
+      )}
+    </a>
+  );
 }
 
-// ── ArrowBtn ───────────────────────────────────────────────────────────────
 function ArrowBtn({ side, onClick }) {
   return (
     <button
@@ -491,19 +282,18 @@ function ArrowBtn({ side, onClick }) {
         cursor: 'pointer',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         zIndex: 100,
-        transition: 'background 200ms, border-color 200ms',
+        transition: 'background 200ms',
         fontFamily: 'Space Mono, monospace',
         fontSize: 18
       }}
-      onMouseEnter={(e) => {e.currentTarget.style.background = 'rgba(255,255,255,0.16)';}}
-      onMouseLeave={(e) => {e.currentTarget.style.background = 'rgba(255,255,255,0.06)';}}>
-      
+      onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.16)'; }}
+      onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; }}
+    >
       {side === 'left' ? '←' : '→'}
-    </button>);
-
+    </button>
+  );
 }
 
-// ── Fan — horizontal stack of album covers with center focus ───────────────
 function Fan({ albums, active, setActive, isMobile }) {
   const wrapRef = React.useRef(null);
 
@@ -532,10 +322,7 @@ function Fan({ albums, active, setActive, isMobile }) {
     if (!el) return;
     let startX = null;
     let lastJump = 0;
-    const onDown = (e) => {
-      startX = e.touches ? e.touches[0].clientX : e.clientX;
-      lastJump = 0;
-    };
+    const onDown = (e) => { startX = e.touches ? e.touches[0].clientX : e.clientX; lastJump = 0; };
     const onMove = (e) => {
       if (startX == null) return;
       const x = e.touches ? e.touches[0].clientX : e.clientX;
@@ -548,7 +335,7 @@ function Fan({ albums, active, setActive, isMobile }) {
         setActive((i) => ((i - delta) % albums.length + albums.length) % albums.length);
       }
     };
-    const onUp = () => {startX = null;};
+    const onUp = () => { startX = null; };
     el.addEventListener('mousedown', onDown);
     window.addEventListener('mousemove', onMove);
     window.addEventListener('mouseup', onUp);
@@ -579,10 +366,10 @@ function Fan({ albums, active, setActive, isMobile }) {
         userSelect: 'none',
         touchAction: 'pan-y'
       }}
-      onMouseDown={(e) => {e.currentTarget.style.cursor = 'grabbing';}}
-      onMouseUp={(e) => {e.currentTarget.style.cursor = 'grab';}}
-      onMouseLeave={(e) => {e.currentTarget.style.cursor = 'grab';}}>
-      
+      onMouseDown={(e) => { e.currentTarget.style.cursor = 'grabbing'; }}
+      onMouseUp={(e) => { e.currentTarget.style.cursor = 'grab'; }}
+      onMouseLeave={(e) => { e.currentTarget.style.cursor = 'grab'; }}
+    >
       {albums.map((a, i) => {
         const n = albums.length;
         let offset = i - active;
@@ -599,10 +386,9 @@ function Fan({ albums, active, setActive, isMobile }) {
         const isActive = abs === 0;
 
         return (
-          <button
+          <div
             key={a.title}
-            onClick={() => setActive(i)}
-            aria-label={`${a.artist} — ${a.title}`}
+            onClick={() => { if (!isActive) setActive(i); }}
             style={{
               position: 'absolute',
               left: '50%',
@@ -614,87 +400,29 @@ function Fan({ albums, active, setActive, isMobile }) {
               zIndex: z,
               opacity,
               transition: 'transform 520ms cubic-bezier(.2,.8,.2,1), opacity 320ms, box-shadow 320ms',
-              padding: 0, border: 0, background: 'transparent',
-              cursor: isActive ? 'default' : 'pointer',
-              boxShadow: isActive ?
-              '0 28px 70px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06)' :
-              '0 14px 30px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.04)'
-            }}>
-            
-            <AlbumSlot id={`album-${i}`} label={`${a.artist}\n${a.title}`} />
-          </button>);
-
+              cursor: isActive ? 'pointer' : 'pointer',
+              boxShadow: isActive
+                ? '0 28px 70px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06)'
+                : '0 14px 30px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.04)',
+              background: '#111',
+              overflow: 'hidden',
+            }}
+          >
+            <AlbumCover album={a} isActive={isActive} />
+          </div>
+        );
       })}
 
       <ArrowBtn onClick={() => setActive((i) => (i - 1 + albums.length) % albums.length)} side="left" />
       <ArrowBtn onClick={() => setActive((i) => (i + 1) % albums.length)} side="right" />
-    </div>);
-
-}
-
-// ── SaveButton ─────────────────────────────────────────────────────────────
-// Becomes accessible once the user has added at least one album cover.
-// Downloads their album cover collection as a JSON file they can keep / re-import.
-function SaveButton({ albums, savedCount, onSaved }) {
-  const hasAny = savedCount > 0;
-  const handleSave = () => {
-    const data = { savedAt: new Date().toISOString(), covers: {} };
-    albums.forEach((a, i) => {
-      try {
-        const v = localStorage.getItem('album-cover:album-' + i);
-        if (v) data.covers['album-' + i] = { artist: a.artist, title: a.title, image: v };
-      } catch {}
-    });
-    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `ma-collection-musicale-${new Date().toISOString().slice(0,10)}.json`;
-    document.body.appendChild(a); a.click(); a.remove();
-    URL.revokeObjectURL(url);
-    onSaved && onSaved();
-  };
-  return (
-    <button
-      type="button"
-      onClick={handleSave}
-      disabled={!hasAny}
-      aria-label="Enregistrer ma collection"
-      className={'save-btn' + (hasAny ? ' is-ready' : '')}
-    >
-      <span aria-hidden="true" style={{ marginRight: 8 }}>↓</span>
-      Enregistrer ma sélection
-      {hasAny && <span className="save-count">{savedCount}</span>}
-    </button>
+    </div>
   );
 }
 
-// ── MusicSection ───────────────────────────────────────────────────────────
 function MusicSection() {
   const [active, setActive] = React.useState(2);
   const isMobile = useMediaQuery('(max-width: 760px)');
   const a = ALBUMS[active];
-
-  // Track how many albums have a saved cover (drives the Save button)
-  const computeSavedCount = React.useCallback(() => {
-    let n = 0;
-    for (let i = 0; i < ALBUMS.length; i++) {
-      try { if (localStorage.getItem('album-cover:album-' + i)) n++; } catch {}
-    }
-    return n;
-  }, []);
-  const [savedCount, setSavedCount] = React.useState(computeSavedCount);
-  const [justSaved, setJustSaved] = React.useState(false);
-
-  React.useEffect(() => {
-    const refresh = () => setSavedCount(computeSavedCount());
-    window.addEventListener('album-cover-saved', refresh);
-    window.addEventListener('storage', refresh);
-    return () => {
-      window.removeEventListener('album-cover-saved', refresh);
-      window.removeEventListener('storage', refresh);
-    };
-  }, [computeSavedCount]);
 
   React.useEffect(() => {
     const onKey = (e) => {
@@ -712,7 +440,7 @@ function MusicSection() {
 
       <div className="main-grid">
         <div className="text-col">
-          <div className="eyebrow">LA MUSIQUE + Shay</div>
+          <div className="eyebrow">LA MUSIQUE + SHAY</div>
           <p className="body-copy">
             La musique a toujours eu une grande influence sur ma façon de travailler. Le bon album en fond, c'est ce qui me met dans la zone quand je code, quand je design, ou quand je tiens un long projet. Voici les disques qui m'accompagnent. Fais glisser, scrolle, ou utilise les flèches pour naviguer.
           </p>
@@ -729,32 +457,25 @@ function MusicSection() {
           </div>
 
           <div className="dots">
-            {ALBUMS.map((_, i) =>
-            <button
-              key={i}
-              onClick={() => setActive(i)}
-              aria-label={`Album ${i + 1}`}
-              className={'dot' + (i === active ? ' is-active' : '')} />
-
-            )}
+            {ALBUMS.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setActive(i)}
+                aria-label={`Album ${i + 1}`}
+                className={'dot' + (i === active ? ' is-active' : '')}
+              />
+            ))}
           </div>
 
-          <div className="save-row">
-            <SaveButton
-              albums={ALBUMS}
-              savedCount={savedCount}
-              onSaved={() => { setJustSaved(true); setTimeout(() => setJustSaved(false), 2400); }}
-            />
-            {justSaved && <span className="save-toast" role="status">✓ Fichier téléchargé</span>}
-          </div>
+          <p className="hint">Cliquer sur l'album central → ouvre Spotify</p>
         </div>
       </div>
-    </div>);
-
+    </div>
+  );
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(<MusicSection />);
 
-</script>
+  </script>
 </body>
 </html>
