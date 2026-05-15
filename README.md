@@ -52,4 +52,4 @@ Features a fan-style album carousel with smooth animations, swipe and scroll sup
 
 ## License
 
-MIT
+This project is licensed under the [MIT License](./LICENSE).
