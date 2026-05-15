@@ -19,7 +19,7 @@
       };
     })();
   </script>
-  <title>Influence musicale · Shanisya Lahida</title>
+  <title>Influence Musicale · Shanisya Lahida</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&display=swap" rel="stylesheet" />
@@ -420,7 +420,7 @@ function Fan({ albums, active, setActive, isMobile }) {
 }
 
 function MusicSection() {
-  const [active, setActive] = React.useState(2);
+  const [active, setActive] = React.useState(0);
   const isMobile = useMediaQuery('(max-width: 760px)');
   const a = ALBUMS[active];
 
@@ -436,13 +436,13 @@ function MusicSection() {
 
   return (
     <div className="page">
-      <h2 className="section-title">Influence musicale</h2>
+      <h2 className="section-title">Influence Musicale</h2>
 
       <div className="main-grid">
         <div className="text-col">
           <div className="eyebrow">LA MUSIQUE + SHAY</div>
           <p className="body-copy">
-            La musique a toujours eu une grande influence sur ma façon de travailler. Le bon album en fond, c'est ce qui me met dans la zone quand je code, quand je design, ou quand je tiens un long projet. Voici les disques qui m'accompagnent. Fais glisser, scrolle, ou utilise les flèches pour naviguer.
+            La musique a toujours eu une grande influence sur ma façon de travailler. Le bon album en fond, c'est ce qui me met dans la zone quand je code, quand je design, ou quand je tiens un long projet. Voici les disques qui m'accompagnent.
           </p>
         </div>
 
@@ -467,7 +467,6 @@ function MusicSection() {
             ))}
           </div>
 
-          <p className="hint">Cliquer sur l'album central → ouvre Spotify</p>
         </div>
       </div>
     </div>
